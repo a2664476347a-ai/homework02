@@ -150,7 +150,7 @@ ggplot(
   aes(
     x = distance_km,
     y = Run_average_speed,
-    colour = runner_type
+    color = runner_type
   )
 ) +
   geom_point(alpha = 0.2)+
@@ -180,18 +180,46 @@ ggplot(
 
 ## Exercise 4
 
-```{r ex4, out.width = "80%"}
-# Write your code to answer exercise 4 here
-
-
-
-
+```{r ex4a, out.width = "80%"}
+# Delate NAs
+data_gender <- strava_runs |>
+  filter(!is.na(gender))
+# Calculate means
+gender_sumdata <- data_gender |>
+  group_by(gender) |>
+  summarise(
+    mean_distance = mean(distance..m., na.rm = TRUE) / 1000,
+    mean_elapsed_time = mean(elapsed.time..s., na.rm = TRUE) / 60,
+  )
+# Transfer
+gender_long <- gender_sumdata |>
+  pivot_longer(
+    cols = c(mean_distance, mean_elapsed_time),
+    names_to = "measure",
+    values_to = "mean_value"
+  )
+# Plot
+ggplot(
+  gender_long,
+  aes(x = gender, y = mean_value, fill = gender)
+) +
+  geom_col() +
+  facet_wrap(
+    ~ measure,
+    scales = "free_y"
+  ) +
+  labs(
+    title = "Mean Running Distance and Elapsed Time by Gender",
+    x = "Gender",
+    y = "Mean value",
+    fill = "Gender"
+  )
 
 ```
+```{r ex4b, out.width = "80%"}
 
-
-_Write your text to answer exercise 4b here (Please delete this message before submission!)_
-
+# The mean running distance for male runners (10.6 km) is higher than that for female runners (9.70 km). However, the mean elapsed time is approximately the same for both genders (62.4 minutes). This suggests that male runners in this dataset cover a greater average distance while having a similar mean elapsed time. These results describe the observed averages and do not establish that gender causes these differences.
+```
 
 
 
