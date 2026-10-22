@@ -11,7 +11,7 @@
 
 <meta name="author" content="Junyi Mao (S2814883)" />
 
-<meta name="date" content="2026-10-21" />
+<meta name="date" content="2026-10-22" />
 
 <title>hw-02</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">hw-02</h1>
 <h4 class="author">Junyi Mao (S2814883)</h4>
-<h4 class="date">2026-10-21</h4>
+<h4 class="date">2026-10-22</h4>
 
 </div>
 
@@ -380,21 +380,15 @@ display: none;
 <p>When you fill the missing part, remove the # symbol before running
 the code chunk and eval=FALSE</p>
 <pre class="r"><code>data_5k_10k %&gt;% 
-  # filter(______) %&gt;%
+  filter(gender==&quot;M&quot;) %&gt;%
   filter(!is.na(average.heart.rate..bpm.)) %&gt;%
-  # ggplot(aes(x = __________)) + 
+  ggplot(aes(x = average.heart.rate..bpm.)) + 
   geom_histogram(bins = 20)</code></pre>
-<p><em>Write your text to answer exercise 1a here (Please delete this
-message before submission!)</em></p>
-<pre class="r"><code># Write your code for Ex1b here</code></pre>
-<p><em>Write your text to answer exercise 1b here (Please delete this
-message before submission!)</em></p>
+<pre class="r"><code># 1(a) This bar chart shows that distribution of average heart rates among male runners is approximately normal. Most runners have average heart rates between 140 and 165 bpm, with the highest frequency occurring around 145–150 bpm. The mean and median are both 148 bpm, indicating that the centre of the distribution is around this value.The standard deviation is 17.2 bpm, suggesting some variation in average heart rates among runners.</code></pre>
+<pre class="r"><code># 1(b) The histogram for female runners appears to be possibly bimodal, with two local peaks around 145–150 bpm and 165–170 bpm. Compared with male runners, female runners have a higher average heart rate, with a mean of 156 bpm compared with 148 bpm for males. The standard deviation is lower for females (13.2 bpm) than for males (17.2 bpm), suggesting that heart rates are less dispersed in the female sample. However, since the female sample is smaller, further analysis would be needed to determine whether the distribution is genuinely bimodal.</code></pre>
 </div>
 <div id="exercise-2" class="section level2">
 <h2>Exercise 2</h2>
-<pre class="r"><code># Write your code to answer exercise 2a here</code></pre>
-<p><em>Write your text to answer exercise 2b here (Please delete this
-message before submission!)</em></p>
 </div>
 <div id="exercise-3" class="section level2">
 <h2>Exercise 3</h2>
