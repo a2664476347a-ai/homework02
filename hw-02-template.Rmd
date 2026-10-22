@@ -77,9 +77,27 @@ Female_bc |>
 ## Exercise 2
 
 ```{r ex2, out.width = "80%"}
+data_5k_10k <- strava_runs |>
+     mutate(
+         distance_km = distance..m. / 1000,
+         pace = (elapsed.time..s. / 60) / distance_km,
+         race_distance = case_when(
+             abs(distance_km - 5) <= 0.2 ~ "5K",
+             abs(distance_km - 10) <= 0.2 ~ "10K",
+             TRUE ~ NA_character_
+         )
+     ) %>%
+     filter(!is.na(race_distance), !is.na(gender), !is.na(pace))
+ggplot(data_5k_10k, aes(x = race_distance, y = pace)) +
+     geom_boxplot() +
+     facet_wrap(~ gender) +
+     labs(
+         title = "Running Pace by Distance and Gender",
+         x = "Race Distance",
+         y = "Pace (minutes per km)"
+     )
 
-
-
+# The mean pace is lower for male runners than for female runners at both distances, showing that male runners generally run faster. For both genders, the pace is slightly higher for 5K runs than for 10K runs, indicating that the runners in this dataset tend to have a faster pace over 10K. Both genders also show several high-pace outliers, means that considerable variation in running performance.
 
 
 ```
