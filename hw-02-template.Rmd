@@ -42,6 +42,16 @@ data_5k_10k %>%
 
 
 ```{r ex1a(2), out.width="80%"}
+male_bc <- data_5k_10k |>
+  filter(gender == "M") |>
+  filter(!is.na(average.heart.rate..bpm.))
+male_bc |>
+  summarise(
+    n = n(),
+    mean = mean(average.heart.rate..bpm.),
+    median = median(average.heart.rate..bpm.),
+    sd = sd(average.heart.rate..bpm.)
+  )
 # 1(a) This bar chart shows that distribution of average heart rates among male runners is approximately normal. Most runners have average heart rates between 140 and 165 bpm, with the highest frequency occurring around 145–150 bpm. The mean and median are both 148 bpm, indicating that the centre of the distribution is around this value.The standard deviation is 17.2 bpm, suggesting some variation in average heart rates among runners.
 
 
@@ -49,7 +59,19 @@ data_5k_10k %>%
 
 
 ```{r ex1b, out.width="80%"}
+Female_bc <- data_5k_10k |>
+  filter(gender == "F") |>
+  filter(!is.na(average.heart.rate..bpm.))
+Female_bc |>
+  summarise(
+    n = n(),
+    mean = mean(average.heart.rate..bpm.),
+    median = median(average.heart.rate..bpm.),
+    sd = sd(average.heart.rate..bpm.)
+  )
 # 1(b) The histogram for female runners appears to be possibly bimodal, with two local peaks around 145–150 bpm and 165–170 bpm. Compared with male runners, female runners have a higher average heart rate, with a mean of 156 bpm compared with 148 bpm for males. The standard deviation is lower for females (13.2 bpm) than for males (17.2 bpm), suggesting that heart rates are less dispersed in the female sample. However, since the female sample is smaller, further analysis would be needed to determine whether the distribution is genuinely bimodal.
+
+
 ```
 
 ## Exercise 2

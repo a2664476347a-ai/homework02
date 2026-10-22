@@ -384,7 +384,35 @@ the code chunk and eval=FALSE</p>
   filter(!is.na(average.heart.rate..bpm.)) %&gt;%
   ggplot(aes(x = average.heart.rate..bpm.)) + 
   geom_histogram(bins = 20)</code></pre>
+<pre class="r"><code>male_bc &lt;- data_5k_10k |&gt;
+  filter(gender == &quot;M&quot;) |&gt;
+  filter(!is.na(average.heart.rate..bpm.))
+male_bc |&gt;
+  summarise(
+    n = n(),
+    mean = mean(average.heart.rate..bpm.),
+    median = median(average.heart.rate..bpm.),
+    sd = sd(average.heart.rate..bpm.)
+  )</code></pre>
+<pre><code>## # A tibble: 1 × 4
+##       n  mean median    sd
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1   252  148.   148.  17.2</code></pre>
 <pre class="r"><code># 1(a) This bar chart shows that distribution of average heart rates among male runners is approximately normal. Most runners have average heart rates between 140 and 165 bpm, with the highest frequency occurring around 145–150 bpm. The mean and median are both 148 bpm, indicating that the centre of the distribution is around this value.The standard deviation is 17.2 bpm, suggesting some variation in average heart rates among runners.</code></pre>
+<pre class="r"><code>Female_bc &lt;- data_5k_10k |&gt;
+  filter(gender == &quot;F&quot;) |&gt;
+  filter(!is.na(average.heart.rate..bpm.))
+Female_bc |&gt;
+  summarise(
+    n = n(),
+    mean = mean(average.heart.rate..bpm.),
+    median = median(average.heart.rate..bpm.),
+    sd = sd(average.heart.rate..bpm.)
+  )</code></pre>
+<pre><code>## # A tibble: 1 × 4
+##       n  mean median    sd
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1    76  156.   157.  13.2</code></pre>
 <pre class="r"><code># 1(b) The histogram for female runners appears to be possibly bimodal, with two local peaks around 145–150 bpm and 165–170 bpm. Compared with male runners, female runners have a higher average heart rate, with a mean of 156 bpm compared with 148 bpm for males. The standard deviation is lower for females (13.2 bpm) than for males (17.2 bpm), suggesting that heart rates are less dispersed in the female sample. However, since the female sample is smaller, further analysis would be needed to determine whether the distribution is genuinely bimodal.</code></pre>
 </div>
 <div id="exercise-2" class="section level2">
